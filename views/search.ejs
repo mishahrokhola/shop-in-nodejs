@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <% include partials/head.ejs %>
+</head>
+
+<body>
+<header>
+    <% include partials/header.ejs %>
+</header>
+
+
+<!-- Search Product -->
+<% if (product[0]) { %>
+<div class="container">
+    <div class="alert alert-danger text-center" style="display: none">
+        <p>You need to sign in to buy a product</p>
+    </div>
+</div>
+<hr>
+<div class="container">
+    <div class="row search_head">
+        <div class="col-md-8">
+            <p>Product</p>
+        </div>
+        <div class="col-md-1">
+            <p>Price</p>
+        </div>
+        <div class="col-md-1">
+            <p>Currency</p>
+        </div>
+    </div>
+</div>
+<hr>
+<% for(var i = 0; i < product.length; i++) { %>
+<div class="container">
+    <div class="row searchProduct">
+        <div class="col-md-3">
+            <img class="center" src="/images/<%= product[i].image_groups[0].images[0].link %>" alt="">
+        </div>
+        <div class="searchProduct_caption col-md-4">
+            <p class="product_name"><%= product[i].name %></p>
+            <p><%= product[i].short_description %></p>
+        </div>
+        <div class="col-md-1 ml-auto search_price converted_currency">
+            <p><span><%= product[i].price %></span></p>
+        </div>
+        <div class="col-md-1 search_currency">
+            <p>USD</p>
+        </div>
+        <div class="col-md-2 text-center">
+            <% if (login) { %>
+            <form action="/user/add-to-cart/<%= product[i].id %>" method="post">
+                <button class="btn btn-outline-success my-2">
+                    Buy now
+                </button>
+            </form>
+            <% } else { %>
+            <button class="btn btn-outline-success my-2" id="warning">
+                Buy now
+            </button>
+            <% } %>
+        </div>
+    </div>
+</div>
+<hr>
+
+<span style="display: none" id="static_value"><%= product[i].price %></span>
+<% } %>
+<% } else { %>
+<div class="container match text-center">
+    <p>No matches found</p>
+    <hr>
+</div>
+<% } %>
+
+<!-- /Search Product -->
+<footer>
+    <% include partials/footer.ejs %>
+</footer>
+
+<script src="/javascripts/buyClick.js"></script>
+
+</body>
+</html>

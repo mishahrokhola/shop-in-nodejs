@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <% include ../partials/head.ejs %>
+</head>
+
+<body>
+<header>
+    <% include ../partials/header.ejs %>
+</header>
+
+<!-- CategoryProducts -->
+<% products.forEach(function (product){ %>
+<div class="container ">
+    <div class="row">
+        <% product.forEach(function (product) { %>
+        <div class="col-md-6 product">
+            <p class="product_name"><%= product.name %></p>
+            <div class="caption">
+                <img src="/images/<%= product.image_groups[0].images[0].link %>" alt="">
+                <p><%= product.short_description %></p>
+                <div class="price">
+                    <p><strong>Price:</strong>&nbsp;<%= product.price %> $</p>
+                    <form action="<%= butUrl %><%= product.id %>">
+                        <button class="btn btn-outline-success my-2">
+                            More info
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <% }) %>
+    </div>
+</div>
+<% }) %>
+
+<!-- /CategoryProducts -->
+<hr>
+<footer>
+    <% include ../partials/footer.ejs %>
+</footer>
+
+</body>
+</html>

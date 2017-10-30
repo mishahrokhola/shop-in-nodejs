@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <% include ../partials/head.ejs %>
+</head>
+
+<body>
+
+<header>
+    <% include ../partials/header.ejs %>
+</header>
+
+<div class="row justify-content-center" style="margin: 0 0 0 0;">
+    <div class="col-md-4 sign">
+        <div class="text-center">
+            <h1>Sign In</h1>
+        </div>
+        <form action="/user/signin" method="post">
+            <div class="form-group" style="display: none">
+                <input type="text" id="firstName" name="firstName" class="form-control" value="0">
+                <input type="text" id="lastName" name="lastName" class="form-control" value="0">
+            </div>
+            <div class="form-group">
+                <label for="email">E-Mail</label>
+                <input type="text" id="email" name="email" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" class="form-control">
+            </div>
+            <% if (hasErrors) { %>
+            <div class="alert alert-danger text-center">
+                <% messages.forEach(function (message) { %>
+                <p><%= message %></p>
+                <% }) %>
+            </div>
+            <% } %>
+            <div class="text-center">
+                <button class="btn btn-outline-success my-2 my-sm-0 click signBut" type="submit">Sign In</button>
+            </div>
+        </form>
+        <hr>
+        <div class="text-center facebook">
+            <form action="/auth/facebook">
+                <button class="loginBtn loginBtn--facebook">
+                    Signin with Facebook
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+<hr>
+
+<footer>
+    <% include ../partials/footer.ejs %>
+</footer>
+
+</body>
+</html>

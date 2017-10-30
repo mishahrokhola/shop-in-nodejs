@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <% include ../partials/head.ejs %>
+    <script src="/javascripts/fbCallbackURLClean.js"></script>
+</head>
+
+<body>
+<header>
+    <% include ../partials/header.ejs %>
+</header>
+
+
+<!-- Category -->
+
+<!--category page title -->
+<% if (main_title) { %>
+<div class="container">
+    <h2><%= main_title %></h2>
+</div>
+<hr>
+<% } %>
+<!-- /category page title end-->
+
+<% for(var i = 0; i < category.length; i++) { %>
+<div class="container categories">
+    <h2><%= category[i].name %></h2>
+    <p><%= category[i].page_description %></p>
+    <% if (category[i].image) { %>
+    <!--If image not found don't show the block below -->
+    <img src="/images/<%= category[i].image %>" alt="">
+    <% } %>
+    <form action="<%= butUrl%><%= category[i].id %>" method="get">
+        <button class="btn btn-outline-success my-2">
+            View products
+        </button>
+    </form>
+</div>
+<hr>
+<% } %>
+<!-- /Category end-->
+
+<footer>
+    <% include ../partials/footer.ejs %>
+</footer>
+
+</body>
+</html>

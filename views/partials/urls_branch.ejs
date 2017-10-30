@@ -1,0 +1,17 @@
+<!--
+Header Url branch
+With loop i show all names that was passed,
+and if it have url it will be set to this name
+-->
+<div class="container links_branch">
+    <% for (var i = 0; i < branch_name.length; i++) { %>
+    <p>
+        <% if (branch_url[i]) { %>
+        <a href="http://localhost:3000<%= branch_url[i]%>"> <%= branch_name[i] %></a> /
+        <% } %>
+        <% if (!branch_url[i]) { %>
+        <%= branch_name[i] %>
+        <% } %>
+    </p>
+    <% } %>
+</div>

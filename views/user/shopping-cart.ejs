@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <% include ../partials/head.ejs %>
+</head>
+
+<body>
+<header>
+    <% include ../partials/header.ejs %>
+</header>
+
+<!-- Search Product -->
+<% if (product[0]) { %>
+<hr>
+<div class="container">
+    <div class="row search_head">
+        <div class="col-md-2">
+            <p>Product</p>
+        </div>
+        <div class="col-md-4">
+            <p>Name</p>
+        </div>
+        <div class="col-md-1">
+            <p>Price</p>
+        </div>
+        <div class="col-md-1">
+            <p>Currency</p>
+        </div>
+        <div class="col-md-2 text-center">
+            <p>Quantity</p>
+        </div>
+    </div>
+</div>
+<hr>
+<% for(var i = 0; i < product.length; i++) { %>
+<div class="container">
+    <div class="row shopping_cart">
+        <div class="col-md-2">
+            <img class="center" src="/images/<%= product[i].item.image_groups[0].images[0].link %>" alt="">
+        </div>
+        <div class=" col-md-3">
+            <p class="product_name"><%= product[i].item.name %></p>
+        </div>
+        <div class="col-md-1 ml-auto shopping_cart_price">
+            <p><span><%= product[i].item.price %></span></p>
+        </div>
+        <div class="col-md-1 shopping_cart_currency text-center">
+            <p>USD</p>
+        </div>
+        <div class="col-md-2  shopping_cart_qty text-center">
+            <p><span><%= product[i].qty %></span>x</p>
+        </div>
+        <div class="col-md-2 text-center">
+            <form action="/user/remove/<%= product[i].item.id %>" method="get">
+                <button class="btn btn-outline-success my-2">
+                    Remove one
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+<hr>
+<% }}else { %>
+<div class="container match text-center">
+    <p>No products in shopping cart</p>
+    <hr>
+</div>
+<% } %>
+<% if (product[0]) { %>
+<div class="container">
+    <div class="row search_head">
+        <div class="col-md-6">
+            <p>Total</p>
+        </div>
+        <div class="col-md-1">
+            <p><%= totalPrice%></p>
+        </div>
+        <div class="col-md-1 text-center">
+            <p>USD</p>
+        </div>
+        <div class="col-md-2 text-center">
+            <p><%= totalQty%></p>
+        </div>
+    </div>
+</div>
+<hr>
+<% } %>
+<!-- /Search Product -->
+<footer>
+    <% include ../partials/footer.ejs %>
+</footer>
+
+</body>
+</html>

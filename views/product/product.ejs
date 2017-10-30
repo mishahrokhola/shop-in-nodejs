@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <% include ../partials/head.ejs %>
+</head>
+
+<body>
+<header>
+    <% include ../partials/header.ejs %>
+</header>
+
+<div style="display: none" id="static_value">
+    <span><%= product.price %></span>
+</div>
+<!-- Product -->
+<div class="container">
+    <div class="row oneProduct">
+        <div class="col-md-6">
+            <img src="/images/<%= product.image_groups[0].images[0].link %>" alt="">
+        </div>
+        <div class="oneProduct_caption col-md-6">
+            <p class="product_name"><%= product.name %></p>
+            <p><%= product.short_description %></p>
+            <div class="currency">
+                <p><strong>Price:</strong>&nbsp;<span><%= product.price %></span> USD</p>
+            </div>
+            <% if (login) { %>
+            <form action="/user/add-to-cart/<%= product.id %>" method="post">
+                <button class="btn btn-outline-success my-2">
+                    Buy now
+                </button>
+            </form>
+            <% } else { %>
+            <button class="btn btn-outline-success my-2" id="warning">
+                Buy now
+            </button>
+            <div class="alert alert-danger text-center" style="display: none">
+                <p>You need to sign in to buy a product</p>
+            </div>
+            <% } %>
+        </div>
+    </div>
+</div>
+
+<!-- /Product -->
+<hr>
+<footer>
+    <% include ../partials/footer.ejs %>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"
+        integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"
+        integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
+        integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
+        crossorigin="anonymous"></script>
+
+<script src="/javascripts/buyClick.js"></script>
+</body>
+</html>

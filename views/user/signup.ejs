@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <% include ../partials/head.ejs %>
+</head>
+
+<body>
+
+<header>
+    <% include ../partials/header.ejs %>
+</header>
+
+<div class="row justify-content-center" style="margin: 0 0 0 0;">
+    <div class="col-md-4 sign">
+        <div class="text-center">
+            <h1>Sign Up</h1>
+        </div>
+        <form action="/user/signup" method="post">
+            <div class="form-group">
+                <label for="firstName">First Name</label>
+                <input type="text" id="firstName" name="firstName" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="lastName">Last Name</label>
+                <input type="text" id="lastName" name="lastName" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="email">E-Mail</label>
+                <input type="text" id="email" name="email" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" class="form-control">
+            </div>
+            <% if (hasErrors) { %>
+            <div class="alert alert-danger text-center">
+                <% messages.forEach(function (message) { %>
+                <p><%= message %></p>
+                <% }) %>
+            </div>
+            <% } %>
+            <div class="text-center">
+                <button class="btn btn-outline-success my-2 my-sm-0 click signBut" type="submit">Sign Up</button>
+            </div>
+        </form>
+        <hr>
+        <div class="text-center facebook">
+            <form action="/auth/facebook">
+                <button class="loginBtn loginBtn--facebook">
+                    Signup with Facebook
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+<hr>
+
+<footer>
+    <% include ../partials/footer.ejs %>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,66 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="/home">Shop</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="/home/mens">Mens <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="/home/womens">Womens <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="#"></a>
+            </li>
+        </ul>
+        <a class="nav-link shopping_cart" href="#">
+            <i class="fa fa-shopping-cart fa-2x" aria-hidden="true"></i>
+        </a>
+        <form class="form-inline my-2 my-lg-0" action="/home/search" method="post">
+            <input class="form-control mr-sm-2" id="searchName" name="searchName" type="text" placeholder="Search"
+                   aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0 click" type="submit">Search</button>
+        </form>
+        <div class="dropdown user" >
+            <a class="dropdown-toggle nav-link" id="navbarDropdownMenuLink" href="#" data-toggle="dropdown" role="button" aria-haspopup="true"
+               aria-expanded="false">
+                <i class="fa fa-user fa-2x" aria-hidden="true"></i>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <%if (login) {%>
+                <a class="dropdown-item" href="/user/profile">User Account</a>
+                <a class="dropdown-item" href="/user/shopping-cart">Shopping cart
+                    <span class="badge badge-info">
+                        <%if (session.cart) {%>
+                        <%= session.cart.totalQty%>
+                        <%} else {%> 0 <%}%>
+                    </span>
+                </a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="/user/logout">Log out</a>
+                <%} else {%>
+                <a class="dropdown-item" href="/user/signup">Sign Up</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="/user/signin">Sign In</a>
+                <%}%>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"
+        integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"
+        integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
+        integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
+        crossorigin="anonymous"></script>
+
+<script src="/javascripts/dropdownMenu.js"></script>
+
+<% include urls_branch.ejs %>
