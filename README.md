@@ -1,6 +1,6 @@
 # README #
 
-In my osf_academy_project I implemented :
+In my shop I implemented :
 1) Shopping cart
 2) Signin/Logout/Signup
 3) Product Search by name
